@@ -1,4 +1,4 @@
-%This file compares channel codes which show the bit erro probability within the system
+%This file compares channel codes which show the bit error probability within the system
 %created by toumbous
 
 clc;
@@ -6,13 +6,13 @@ clear all;
 
 %%Design of transmitter
 %random data source generate data between 0 to 1
-d=randsrc(1,100,[0:0.1:1]);
+data=randsrc(1,100,[0:0.1:1]);
 
 %source coding
-symbols=unique(d);
-probs = histc(d,symbols)./numel(d);
-[dict, avglen] = huffmandict(symbols, probs);
-comp = huffmanenco(d,dict);
+symbols=unique(data);
+probabilities = histc(data,symbols)./numel(data);
+[dict, avglen] = huffmandict(symbols, probabilities);
+comp = huffmanenco(data,dict);
 
 %different channel codings
 % Convolutionally encoding data 
@@ -69,7 +69,7 @@ end
 
 k=1:length(ratio1);
 plot(k,ratio1,k,ratio2,'.-')
-legend('Convolution code','Forward error correction code');
+legend('Convolution code','Forward Error Correction Code');
 xlabel('Signal Power');
 ylabel('Bit Error Probability')
 title('BER comparison')
